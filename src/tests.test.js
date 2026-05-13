@@ -1,4 +1,4 @@
-import {capitalize, reverseString, calculator, caesarCipher} from "./index.js"
+import {capitalize, reverseString, calculator, caesarCipher, analyzeArray} from "./index.js"
 
 test("Normal capitilization", () =>{
     expect(capitalize("test")).toMatch("Test");
@@ -93,4 +93,26 @@ test("Punctuation", () => {
     expect(caesarCipher("This has punctuation!", 3)).toMatch("Wklv kdv sxqfwxdwlrq!");
     expect(caesarCipher("This. also. has. punctuation.", 5)).toMatch("Ymnx. fqxt. mfx. uzshyzfynts.");
     expect(caesarCipher("Hello, World!", 3)).toMatch("Khoor, Zruog!");
+})
+
+
+test("Analyze array", () => {
+    const arr = [1, 2, 3, 5, 4];
+    const arr2 = [100, 200, 100];
+    const arr3 = [-5, 0, 5, 2];
+
+    expect(analyzeArray(arr).average()).toBe(3);
+    expect(analyzeArray(arr).min()).toBe(1);
+    expect(analyzeArray(arr).max()).toBe(5);
+    expect(analyzeArray(arr).length()).toBe(5);
+
+    expect(analyzeArray(arr2).average()).toBeCloseTo(133.33333333333333333333334);
+    expect(analyzeArray(arr2).min()).toBe(100);
+    expect(analyzeArray(arr2).max()).toBe(200);
+    expect(analyzeArray(arr2).length()).toBe(3);
+
+    expect(analyzeArray(arr3).average()).toBe(0.5);
+    expect(analyzeArray(arr3).min()).toBe(-5);
+    expect(analyzeArray(arr3).max()).toBe(5);
+    expect(analyzeArray(arr3).length()).toBe(4);
 })

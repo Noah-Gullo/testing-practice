@@ -49,3 +49,38 @@ export function caesarCipher(str, factor){
 
     return result;
 }
+
+export function analyzeArray(arr){
+    const result = {
+        average: function(){
+            let sum = 0;
+            for(let i = 0; i < arr.length; i++){
+                sum += arr[i];
+            }
+            return sum / arr.length;
+        },
+        min: function(){
+            let currMin = Infinity;
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i] < currMin){
+                    currMin = arr[i];
+                }
+            }
+            return currMin;
+        },
+        max: function(){
+            let currMax = -Infinity;
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i] > currMax){
+                    currMax = arr[i];
+                }
+            }
+            return currMax;
+        },
+        length: function(){
+            return arr.length;
+        }
+    }
+
+    return result;
+}
