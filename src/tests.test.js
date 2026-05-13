@@ -1,5 +1,4 @@
-import { experiments } from "webpack";
-import {capitalize, reverseString, calculator} from "./index.js"
+import {capitalize, reverseString, calculator, caesarCipher} from "./index.js"
 
 test("Normal capitilization", () =>{
     expect(capitalize("test")).toMatch("Test");
@@ -74,4 +73,24 @@ test("Divide", () => {
     expect(calculator.divide(64, 8)).toBeCloseTo(8);
     expect(calculator.divide(-1, 4)).toBeCloseTo(-0.25);
     expect(calculator.divide(-64, 8)).toBeCloseTo(-8);
+})
+
+test("Shift by 1", () => {
+    expect(caesarCipher("a", 1)).toMatch("b");
+    expect(caesarCipher("z", 1)).toMatch("a");
+})
+
+test("Multiple letters", () => {
+    expect(caesarCipher("Tom", 1)).toMatch("Upn");
+    expect(caesarCipher("XYZ", 1)).toMatch("YZA");
+})
+
+test("Keeps uppercase/lowercase", () => {
+    expect(caesarCipher("AgCNd", 3)).toMatch("DjFQg");
+})
+
+test("Punctuation", () => {
+    expect(caesarCipher("This has punctuation!", 3)).toMatch("Wklv kdv sxqfwxdwlrq!");
+    expect(caesarCipher("This. also. has. punctuation.", 5)).toMatch("Ymnx. fqxt. mfx. uzshyzfynts.");
+    expect(caesarCipher("Hello, World!", 3)).toMatch("Khoor, Zruog!");
 })
