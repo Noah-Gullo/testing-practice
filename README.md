@@ -1,0 +1,1 @@
+Simple repository for practing implementing Test Driven Development using Jest.
